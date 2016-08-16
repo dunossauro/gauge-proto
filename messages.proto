@@ -72,7 +72,7 @@ message StepExecutionEndingRequest {
     optional ExecutionInfo currentExecutionInfo = 1;
 }
 
-/// Contains details of the execution. 
+/// Contains details of the execution.
 /// Depending on the context (Step, Scenario, Spec or Suite), the respective fields are set.
 message ExecutionInfo {
     /// Holds the information of the current Spec. Valid in context of Spec execution.
@@ -117,10 +117,10 @@ message StepInfo {
 
 /// Request sent ot the runner to Execute a Step
 message ExecuteStepRequest {
-  /// Contains the actual text of the Step being executed. 
+  /// Contains the actual text of the Step being executed.
   /// This contains the parameters as defined in the Spec.
   required string actualStepText = 1;
-  /// Contains the parsed text of the Step being executed. 
+  /// Contains the parsed text of the Step being executed.
   /// The paramters are replaced with placeholders.
   required string parsedStepText = 2;
   /// Flag to indicate if the execution of the Scenario, containing the current Step, failed.
@@ -129,7 +129,7 @@ message ExecuteStepRequest {
   repeated gauge.messages.Parameter parameters = 4;
 }
 
-/// Request sent ot the runner to check if given Step is valid. 
+/// Request sent ot the runner to check if given Step is valid.
 /// The runner should check if there is an implementation defined for the given Step Text.
 message StepValidateRequest {
   /// The text is used to lookup Step implementation
@@ -139,7 +139,7 @@ message StepValidateRequest {
 }
 
 /// Response of StepValidateRequest.
-/// The runner tells the caller if the Request was valid, 
+/// The runner tells the caller if the Request was valid,
 /// i.e. an implementation exists for given Step text.
 /// Returns an error message if it is an error response.
 message StepValidateResponse {
@@ -212,7 +212,7 @@ message RefactorResponse {
 
 /// Request for details on a Single Step.
 message StepNameRequest {
-  /// Step text to lookup the Step. 
+  /// Step text to lookup the Step.
   /// This is the parsed step value, i.e. with placeholders for parameters.
   required string stepValue = 1;
 }
@@ -221,7 +221,7 @@ message StepNameRequest {
 message StepNameResponse {
   /// Flag indicating if there is a match for the given Step Text.
   required bool isStepPresent = 1;
-  /// The Step name of the given step. 
+  /// The Step name of the given step.
   repeated string stepName = 2;
   /// Flag indicating if the given Step is an alias.
   required bool hasAlias = 3;
@@ -230,6 +230,17 @@ message StepNameResponse {
 /// Response when a unsupported message request is sent.
 message UnsupportedMessageResponse {
     optional string message = 1;
+}
+
+/// Request for performing execution setup
+message ExecutionSetupRequest {
+    required string projectRoot = 1;
+}
+
+/// Response for ExecutionSetupRequest
+message ExecutionSetupResponse {
+    required bool status = 1;
+    optional string message = 2;
 }
 
 /// This is the message which gets transferred all the time
@@ -261,6 +272,8 @@ message Message {
       RefactorRequest = 21;
       RefactorResponse = 22;
       UnsupportedMessageResponse = 23;
+      ExecutionSetupRequest = 24;
+      ExecutionSetupResponse = 25;
   }
 
   required MessageType messageType = 1;
@@ -317,4 +330,8 @@ message Message {
   optional RefactorResponse refactorResponse = 25;
   /// [UnsupportedMessageResponse](#gauge.messages.UnsupportedMessageResponse)
   optional UnsupportedMessageResponse unsupportedMessageResponse = 26;
+  /// [ExecutionSetupRequest](#gauge.messages.ExecutionSetupRequest)
+  optional ExecutionSetupRequest performSetup = 27;
+  /// [ExecutionSetupResponse](#gauge.messages.ExecutionSetupResponse)
+  optional ExecutionSetupResponse setupComplete = 28;
 }
