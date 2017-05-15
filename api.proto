@@ -143,6 +143,20 @@ message PerformRefactoringResponse {
   repeated string filesChanged = 3;
 }
 
+/// Tells the runner to perform refresh cache.
+message PerformRefreshRequest {
+  ///Refresh cache w.r.t given files
+  repeated string files = 1;
+}
+
+/// Response of a PerformRefreshRequest
+message PerformRefreshResponse {
+  /// Flag indicating the success of Refresh cache operation.
+  bool success = 1;
+  /// Error message, valid only if Refresh cache wasn't successful
+  string error = 2;
+}
+
 /// Request to perform Extract to Concept refactoring
 /// The runner does not do the refactoring here, instead it provides inputs enabling the IDE to do refactoring
 message ExtractConceptInfoRequest {
