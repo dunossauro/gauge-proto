@@ -249,6 +249,8 @@ message APIMessage {
     FormatSpecsRequest = 19;
     FormatSpecsResponse = 20;
     UnsupportedApiMessageResponse = 21;
+    PerformRefreshRequest = 22;
+    PerformRefreshResponse = 23;
   }
 
   /// Type of API call being made
@@ -301,4 +303,8 @@ message APIMessage {
   FormatSpecsResponse formatSpecsResponse = 23;
   /// [UnsupportedApiMessageResponse] (#gauge.messages.UnsupportedApiMessageResponse)
   UnsupportedApiMessageResponse unsupportedApiMessageResponse= 24;
+  /// [PerformRefreshRequest](#gauge.messages.PerformRefreshRequest)
+  PerformRefreshRequest performRefreshRequest = 25;
+  /// [PerformRefreshResponse](#gauge.messages.PerformRefreshResponse)
+  PerformRefreshResponse performRefreshResponse = 26;
 }
