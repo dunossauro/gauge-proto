@@ -211,6 +211,20 @@ message RefactorResponse {
   repeated string filesChanged = 3;
 }
 
+/// Tells the runner to refresh its cache.
+message RefreshRequest {
+    ///Refresh cache w.r.t given files
+   repeated string files = 1;
+}
+
+/// Response of a RefreshRequest
+message RefreshResponse {
+    /// Flag indicating the success of Refresh cache operation.
+    bool success = 1;
+    /// Error message, valid only if Refresh cache wasn't successful
+    string error = 2;
+}
+
 /// Request for details on a Single Step.
 message StepNameRequest {
   /// Step text to lookup the Step. 
