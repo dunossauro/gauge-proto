@@ -276,6 +276,8 @@ message Message {
       RefactorRequest = 21;
       RefactorResponse = 22;
       UnsupportedMessageResponse = 23;
+      RefreshRequest = 24;
+      RefreshResponse = 25;
   }
 
   MessageType messageType = 1;
@@ -332,4 +334,8 @@ message Message {
   RefactorResponse refactorResponse = 25;
   /// [UnsupportedMessageResponse](#gauge.messages.UnsupportedMessageResponse)
   UnsupportedMessageResponse unsupportedMessageResponse = 26;
+  /// [RefreshRequest](#gauge.messages.RefreshRequest)
+  RefreshRequest refreshRequest = 27;
+  /// [RefreshResponse](#gauge.messages.RefreshResponse)
+  RefreshResponse refreshResponse = 28;
 }
